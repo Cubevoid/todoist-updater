@@ -1,7 +1,5 @@
 #!/bin/bash
 
-if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
-
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
     . /etc/os-release
@@ -19,12 +17,12 @@ else
 fi
 
 cd ~/Downloads
-rm Todoist-*
+rm mailspring-*
 echo "Removed old version..."
 
 if [ $OS == "Fedora" ]; then
 
-    dnf remove Todoist -y
+    sudo dnf remove Todoist -y
     echo "Downloading latest Todoist release..."
     curl -s https://api.github.com/repos/KryDos/todoist-linux/releases/latest \
       | grep browser_download_url.*rpm \
@@ -32,11 +30,11 @@ if [ $OS == "Fedora" ]; then
       | tr -d \" \
       | wget -qi -
     echo "Installing new version..."
-    dnf install Todoist* -y
+    sudo dnf install Todoist* -y
 
-elif [ $OS == "Ubuntu" -o $OS == "Debian" ]; then
+elif [ $OS == "Ubuntu" -o $OS == "Debian" -o $OS == "Pop!_OS" ]; then
     
-    apt remove Todoist -y
+    sudo apt remove Todoist -y
     echo "Downloading latest Tdoist release..."
     curl -s https://api.github.com/repos/KryDos/todoist-linux/releases/latest \
       | grep browser_download_url.*deb \
@@ -44,7 +42,8 @@ elif [ $OS == "Ubuntu" -o $OS == "Debian" ]; then
       | tr -d \" \
       | wget -qi -
     echo "Installing new version..."
-    apt install Todoist* -y
+    sudo apt install Todoist* -y
+
 fi
 
 rm Todoist-*

@@ -1,2 +1,3 @@
 # todoist-updater
-Update script for Todoist on Linux.
+A small script to update Todoist automatically on Linux when it is installed via an rpm or deb package (not Snap).
+
