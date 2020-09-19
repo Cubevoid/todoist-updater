@@ -34,17 +34,17 @@ if [ $OS == "Fedora" ]; then
 
 elif [ $OS == "Ubuntu" -o $OS == "Debian" -o $OS == "Pop!_OS" ]; then
     
-    sudo apt remove Todoist -y
-    echo "Downloading latest Tdoist release..."
+    sudo apt remove todoist -y
+    echo "Downloading latest Todoist release..."
     curl -s https://api.github.com/repos/KryDos/todoist-linux/releases/latest \
       | grep browser_download_url.*deb \
       | cut -d : -f 2,3 \
       | tr -d \" \
       | wget -qi -
     echo "Installing new version..."
-    sudo apt install Todoist* -y
+    sudo apt install ./Todoist_*_amd64.deb -y
 
 fi
 
-rm Todoist-*
+rm ~/Downloads/Todoist*
 echo "Removed junk files."
