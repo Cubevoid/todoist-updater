@@ -17,7 +17,7 @@ else
 fi
 
 cd ~/Downloads
-rm mailspring-*
+rm Todoist-*
 echo "Removed old version..."
 
 if [ $OS == "Fedora" ]; then
@@ -34,7 +34,7 @@ if [ $OS == "Fedora" ]; then
 
 elif [ $OS == "Ubuntu" -o $OS == "Debian" -o $OS == "Pop!_OS" ]; then
     
-    sudo apt remove todoist -y
+    sudo apt purge todoist -y
     echo "Downloading latest Todoist release..."
     curl -s https://api.github.com/repos/KryDos/todoist-linux/releases/latest \
       | grep browser_download_url.*deb \
